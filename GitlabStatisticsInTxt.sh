@@ -1,5 +1,5 @@
 #!/bin/bash
-#find / -name gitlab to find gitlab folder
+#find / -name gitlab to find gitlab folder 统计代码总行数保存到/home/total_all.txt
 master_dev='master'
 date_star='2018-11-01'
 date_end='2019-11-30'
