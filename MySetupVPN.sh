@@ -22,8 +22,8 @@ printf "
 
 VPN_IP=`curl ipv4.icanhazip.com`
 
-VPN_USER="linuxinvador"
-VPN_PASS="linuxinvador"
+VPN_USER="linuxinvader"
+VPN_PASS="linuxinvader"
 
 VPN_LOCAL="192.168.0.150"
 VPN_REMOTE="192.168.0.151-200"
