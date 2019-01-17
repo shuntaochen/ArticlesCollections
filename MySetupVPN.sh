@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Author:  yeho <lj2007331 AT gmail.com>
-# Blog:  https://blog.linuxeye.com
+# Author: 
+# Blog:  
 #
 # Installs a PPTP VPN-only system for CentOS
 
@@ -22,8 +22,8 @@ printf "
 
 VPN_IP=`curl ipv4.icanhazip.com`
 
-VPN_USER="linuxeye"
-VPN_PASS="linuxeye"
+VPN_USER="linuxinvador"
+VPN_PASS="linuxinvador"
 
 VPN_LOCAL="192.168.0.150"
 VPN_REMOTE="192.168.0.151-200"
