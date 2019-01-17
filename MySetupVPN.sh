@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Author: 
+# Author: intruder
 # Blog:  
 #
 # Installs a PPTP VPN-only system for CentOS
