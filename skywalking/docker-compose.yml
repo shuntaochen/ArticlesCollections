@@ -7,6 +7,7 @@ services:
     build:
       context: .
       dockerfile: elasticsearch.dockerfile
+    command: sysctl -w vm.max_map_count=262144
     ports:
       - "9200:9200"
       - "9300:9300"
