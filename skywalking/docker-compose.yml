@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  #elastic 镜像
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: elasticsearch.dockerfile
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+       - "/data/es2:/usr/share/elasticsearch/data"
+
+  #kibana 可视化查询，暴露 5601
+  kibana:
+    image: kibana
+    links:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    depends_on:
+      - "elasticsearch"
+      
+  #skywalking
+  skywalking:
+    build:
+      context: .
+      dockerfile: skywalking.dockerfile
+    ports:
+      - "13000:10800"
+      - "13001:11800"
+      - "13002:12800"
+      - "13004:8080"
+    links:
+      - elasticsearch
+    depends_on:
+      - "elasticsearch"
