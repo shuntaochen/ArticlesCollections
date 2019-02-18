@@ -1,3 +1,5 @@
+#Jenkins build with parameters, set emptyinventory and pushtoinventory both checked
+#
 find ./ -type f -name \*.nupkg -delete
 dotnet restore
 dotnet pack -c Release
