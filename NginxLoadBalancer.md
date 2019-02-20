@@ -31,4 +31,4 @@ nginx -s reload
 3. Visit 192.168.1.7:18055, and the upstream is loadbalanced between servers
 
 As to other detailed strategies for nginx settings, refer to other materials, eg the official document.
-[Nginx](http://nginx.org/en/), nginx is a reverse proxy server, etc..
+[Nginx Org Doc](http://nginx.org/en/), nginx is a reverse proxy server, etc..
