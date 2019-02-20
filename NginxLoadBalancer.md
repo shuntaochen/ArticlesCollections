@@ -14,7 +14,15 @@ server {
   location / {
           proxy_pass http://thegateways;
           index index.html index.htm;
+          #root /usr/htdocs/linux;
   }
+#解析.php的文件
+　#location ~ \.php$ {
+　　　　#fastcgi_pass 127.0.0.1:9000;
+　　　　#fastcgi_index index.php;
+　　　　#fastcgi_param SCRIPT_FILENAME /usr/htdocs/linux/$fastcgi_script_name;   //当前虚拟主机对应的目录
+　　　　#include fastcgi_params;
+　#}   
 }
 
 ```
