@@ -19,6 +19,10 @@ server {
 ```
 2. Reload settings
 ```
+ #view nginx processes, usually 5
+ ps -ef | grep nginx
+ #Kill master nginx process
+ Kill -HUP masterprocessid
 #restart nginx
 nginx -c /etc/nginx/nginx.conf
 #reload setting
