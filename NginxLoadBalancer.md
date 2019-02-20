@@ -19,10 +19,10 @@ server {
 ```
 2. Reload settings
 ```
- #view nginx processes, usually 5
- ps -ef | grep nginx
- #Kill master nginx process
- Kill -HUP masterprocessid
+#view nginx processes, usually 5
+ps -ef | grep nginx
+#Reload process config but not kill the process, use -HUP, means hang up.
+Kill -HUP masterprocessid
 #restart nginx
 nginx -c /etc/nginx/nginx.conf
 #reload setting
