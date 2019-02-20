@@ -1,4 +1,5 @@
-### Setting up nginx reverse proxy for loadbalancing
+### Setting up nginx reverse proxy for loadbalancing 
+[Doc for this topic of as http loadbalancer](http://nginx.org/en/docs/http/load_balancing.html)
 
 1. In /etc/nginx nginx.conf, add loadbalance settings
 ```
