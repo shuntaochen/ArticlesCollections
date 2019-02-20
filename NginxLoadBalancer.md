@@ -10,7 +10,7 @@ server 192.168.1.7:18031;
 }
 server {
   listen 18055;
-  server_name thegateways;
+  server_name thegateways; # Domain name is here
   location / {
           proxy_pass http://thegateways;
           index index.html index.htm;
