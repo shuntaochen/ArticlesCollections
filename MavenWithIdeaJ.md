@@ -18,3 +18,7 @@ mvn spring-boot:run
 #method2
 idea tool bar-> run-> edit config-> select module, main class, and other options-> run -> visit localhost:8080
 ```
+4. Using Quick fix in IdeaJ
+```
+Press "Alt+Enter"
+```
