@@ -2,6 +2,8 @@ Using Sping boot and IdeaJ
 ---
 1. IdeaJ create Spring-boot project
 ```
+#If start.spring.io cannot access, 
+tool bar->file->settings->search "http proxy", check "auto-detect proxy settings"->test connection
 spring-> web-> create
 ```
 2. Maven using domestic mirrors
