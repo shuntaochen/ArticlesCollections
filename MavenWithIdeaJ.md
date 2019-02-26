@@ -22,5 +22,6 @@ idea tool bar-> run-> edit config-> select module, main class, and other options
 ```
 4. Using Quick fix in IdeaJ
 ```
-Press "Alt+Enter"
+Press "Alt+Enter", help intelligence
+Press "Alt+Insert", generates getter and setter, constructor, etc
 ```
