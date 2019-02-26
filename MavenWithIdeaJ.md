@@ -26,4 +26,6 @@ idea tool bar-> run-> edit config-> select module, main class, and other options
 ```
 Press "Alt+Enter", help intelligence
 Press "Alt+Insert", generates getter and setter, constructor, etc
+Press "Alt+F7"， find usages
+Press "Ctrl+B", go to declaration
 ```
