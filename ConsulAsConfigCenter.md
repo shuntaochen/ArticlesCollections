@@ -1,3 +1,5 @@
+### Load Configuration In DotnetCore with onload and load to replace configs fetched from consul
+---
 1. Configuration provider
 ```
 public class ConsulConfigurationProvider : ConfigurationProvider
