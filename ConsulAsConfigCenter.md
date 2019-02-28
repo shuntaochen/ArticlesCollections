@@ -152,6 +152,8 @@ public static class ConsulConfigurationExtensions
 ```
 4. Configure entry
 ```
+//appsettings.json
+{"CONSUL_URL":"{http://consulurl/}","CONSUL_PATH":"{keyname}"}
 public static IWebHost BuildWebHost(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(cb =>
