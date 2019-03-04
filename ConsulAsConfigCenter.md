@@ -172,3 +172,9 @@ var Configuration=IocManager.Resolve<IConfiguration>();//or use ctor injection o
 var flattenedValue=Configuration["key"];
 var kvs=new ConsulConfigurationProvider(Configuration["CONSUL_URL"],Configuration["CONSUL_PATH"]);
 ```
+
+### Consul deregister a service
+```
+#Last param is service live Id under each service
+curl --request PUT http://192.168.1.7:8500/v1/agent/service/deregister/ConfigCenter_127_0_0_1_18035
+```
