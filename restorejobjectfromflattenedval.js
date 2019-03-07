@@ -1,3 +1,5 @@
+//original val:
+//a:b:c=3
 var keys=['a','b','c']
 var ret={}
 var x={}
@@ -14,3 +16,5 @@ ret=ret[key]
 if(i==2){ ret[key]=3;}
 }
 console.log(x)
+
+//result {a:{b:{c:3}}}
