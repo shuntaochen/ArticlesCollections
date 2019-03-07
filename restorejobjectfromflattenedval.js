@@ -1,4 +1,6 @@
+var keys=['a','b','c']
 var ret={}
+
 for(var i=0;i<3;i++){
 
 var key=keys[i]
