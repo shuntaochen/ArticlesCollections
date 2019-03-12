@@ -10,4 +10,4 @@ Present form and layout of report usually have nothing to do with the data itsel
 
 Dimensions are always business aspects that requires confirmation. And dimensions are measured by measures, each measure measures some dimension(s).
 
-There is one open-source OLAP library in java **Mondrian**, this can be used to analyze the data.
+There is one open-source OLAP library in java, **Mondrian**, this can be used to analyze the data.
