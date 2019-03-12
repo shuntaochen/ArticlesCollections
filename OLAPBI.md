@@ -1,6 +1,6 @@
 What is OLAP, it is a data analysis platform and theory. OLAP provides calculation and statistics of data across dimensions.
 
-In OLAP, data is spliced into cubes, dimensions in each cubes stands for different statistic aspect.
+In OLAP, data is spliced into cubes, dimensions in each cube stand for different statistic aspect.
 OLAP analysis usually involves multi datasources. A cube can also be cross datasours.
 Since datasource can contain coutable talbes and views or using a sql to present data, a cube can also include such.
 
