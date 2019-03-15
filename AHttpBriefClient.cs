@@ -17,37 +17,49 @@ namespace EP.ConfigCenter.Configuration
 {
 
     [BaseUri("http://localhost:18040/")]
-    public interface ISettingsAppService
+    public interface ISettings
     {
-        Task Create(SettingInfo setting);
-        Task Delete(SettingInfo setting);
-        Task<List<SettingInfo>> GetAllList();
-        Task<string> GetSetting(string name);
-        Task Update(SettingInfo setting);
+        object Create(SettingInfo setting);
+        object Delete(SettingInfo setting);
+        object GetAllList();
+        object GetSetting(string name);
+        object Update(SettingInfo setting);
     }
 
-    public class AllMightyRestClient : DynamicObject
+    public class AllMightyRestClient<T> : DynamicObject
     {
         private HttpClient _httpClient;
         private string _serviceName;
 
-
-        public AllMightyRestClient Init<T>()
+        public AllMightyRestClient()
         {
-            _serviceName = nameof(T).TrimStart('I').Replace("appservice", "", StringComparison.OrdinalIgnoreCase);
+            _serviceName = typeof(T).Name.TrimStart('I').Replace("appservice", "", StringComparison.OrdinalIgnoreCase);
             var ret = new HttpClient();
 
-            if (typeof(T).IsInterface && typeof(T).IsDefined(typeof(T), inherit: false))
+            if (typeof(T).IsInterface)
             {
                 var attrs = typeof(T).GetCustomAttributes(false);
                 var baseUri = attrs.First(at => at.GetType() == typeof(BaseUriAttribute)) as BaseUriAttribute;
                 ret = new HttpClient { BaseAddress = new Uri(baseUri.BaseUri.TrimEnd('/') + "/") };
             }
             _httpClient = ret;
-
-            return this;
         }
 
+
+        //public AllMightyRestClient Init<T>()
+        //{
+        //    _serviceName = nameof(T).TrimStart('I').Replace("appservice", "", StringComparison.OrdinalIgnoreCase);
+        //    var ret = new HttpClient();
+
+        //    if (typeof(T).IsInterface && typeof(T).IsDefined(typeof(T), inherit: false))
+        //    {
+        //        var attrs = typeof(T).GetCustomAttributes(false);
+        //        var baseUri = attrs.First(at => at.GetType() == typeof(BaseUriAttribute)) as BaseUriAttribute;
+        //        ret = new HttpClient { BaseAddress = new Uri(baseUri.BaseUri.TrimEnd('/') + "/") };
+        //    }
+        //    _httpClient = ret;
+        //    return this;
+        //}
 
         public override bool TryInvoke(InvokeBinder binder, object[] args, out object result)
         {
