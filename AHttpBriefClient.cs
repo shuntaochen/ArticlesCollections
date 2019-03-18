@@ -85,7 +85,7 @@ namespace EP.ConfigCenter.Configuration
             HttpMethod httpMethod = GetHttpMethodTypeByConvension(methodName);
             var httpMessage = new HttpRequestMessage(httpMethod, path)
             {
-                Content = args[0].ToJsonStringContent()
+                Content = args[0].ToFormUrlEncodedContent()
             };
             var ret = "";
             this.SafelyRun(() =>
