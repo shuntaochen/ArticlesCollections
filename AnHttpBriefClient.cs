@@ -149,5 +149,7 @@ public static Func<object[], IMyInterface> BuildFactoryExpression(ConstructorInf
     ).Compile();
 }
 
+//walk through of how to use dynamic object
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/walkthrough-creating-and-using-dynamic-objects
 //Third part of convert dynamicobject to interface type
 https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.tryconvert?view=netframework-4.7.2
