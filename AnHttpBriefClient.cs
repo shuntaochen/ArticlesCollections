@@ -61,22 +61,22 @@ namespace EP.ConfigCenter.Configuration
         //    return this;
         //}
 
-        public override bool TryInvoke(InvokeBinder binder, object[] args, out object result)
-        {
-            return base.TryInvoke(binder, args, out result);
-        }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
             var path = $"api/services/app/{_serviceName}/{binder.Name}";
 
             result = ConventionlyIssue(path, binder.Name, args);
-            return base.TryInvokeMember(binder, args, out result);
+            this._result = result;
+            return true;
         }
+
+        protected object _result;
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            return base.TryGetMember(binder, out result);
+            result = _result;
+            return true;
         }
 
 
