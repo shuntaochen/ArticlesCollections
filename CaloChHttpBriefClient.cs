@@ -80,7 +80,7 @@ namespace EP.ConfigCenter.Configuration
         }
 
 
-        protected string ConventionlyIssue(string path, string methodName, object[] args)
+        protected string ConventionallyIssue(string path, string methodName, object[] args)
         {
             HttpMethod httpMethod = GetHttpMethodTypeByConvension(methodName);
             HttpContent content;
