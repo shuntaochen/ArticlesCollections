@@ -83,14 +83,18 @@ namespace EP.ConfigCenter.Configuration
         protected string ConventionlyIssue(string path, string methodName, object[] args)
         {
             HttpMethod httpMethod = GetHttpMethodTypeByConvension(methodName);
+            HttpContent content;
+            if (httpMethod == HttpMethod.Get) content = args[0]?.ToFormUrlEncodedContent();
+            else content = args[0]?.ToJsonStringContent();
             var httpMessage = new HttpRequestMessage(httpMethod, path)
             {
-                Content = args[0].ToFormUrlEncodedContent()
+                Content = content
             };
             var ret = "";
             this.SafelyRun(() =>
             {
-                ret = _httpClient.SendAsync(httpMessage).Result.Content.ReadAsStringAsync().Result;
+                var retr = this.Sync(_httpClient.SendAsync(httpMessage));
+                ret = this.Sync(retr.Content.ReadAsStringAsync());
             });
 
             return ret;
