@@ -99,13 +99,13 @@ namespace EP.ConfigCenter.Configuration
         private HttpMethod GetHttpMethodTypeByConvension(string methodName)
         {
             var lowerMN = methodName.ToLower();
-            if (lowerMN.StartsWith("g"))
+            if (lowerMN.StartsWith("get"))
                 return HttpMethod.Get;
             if (lowerMN.StartsWith("pu"))
-                return HttpMethod.Get;
+                return HttpMethod.Put;
             if (lowerMN.StartsWith("po"))
-                return HttpMethod.Get;
-            if (lowerMN.StartsWith("d"))
+                return HttpMethod.Post;
+            if (lowerMN.StartsWith("del"))
                 return HttpMethod.Delete;
             return HttpMethod.Post;
         }
