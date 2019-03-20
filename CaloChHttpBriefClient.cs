@@ -155,3 +155,5 @@ https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/walkthrou
 https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.tryconvert?view=netframework-4.7.2
 //Using assembly builder and type builders
 ...
+// And the ultimate solution to create an object of an interface is to write concrete method and use ilspy.exe to view il generated code.
+// Then use ILGenerator to generate the class and code. What a shame, but have no idea what IL code really means, no need to bother the meaning anyway.
