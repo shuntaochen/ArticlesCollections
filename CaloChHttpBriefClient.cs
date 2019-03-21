@@ -157,3 +157,11 @@ https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.tryconv
 ...
 // And the ultimate solution to create an object of an interface is to write concrete method and use ilspy.exe to view il generated code.
 // Then use ILGenerator to generate the class and code. What a shame, but have no idea what IL code really means, no need to bother the meaning anyway.
+
+//The castle project can create proxy of an interface without target, can specify the invocations!
+    
+            var pg = new ProxyGenerator();
+
+            var tp = typeof(TInterface);
+
+            var ret = pg.CreateInterfaceProxyWithoutTarget(tp);
