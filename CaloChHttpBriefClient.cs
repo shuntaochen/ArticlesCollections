@@ -165,3 +165,14 @@ https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.tryconv
             var tp = typeof(TInterface);
 
             var ret = pg.CreateInterfaceProxyWithoutTarget(tp);
+//Use dotnetcore options, config singleton
+  //添加options
+            services.AddOptions();
+            services.Configure<SiteConfig>(Configuration.GetSection("SiteConfig"));
+//Injection:
+ public SiteConfig Config;
+
+        public HomeController(IOptions<SiteConfig> option)
+        {
+            Config = option.Value;
+        }
