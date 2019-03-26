@@ -176,3 +176,17 @@ https://docs.microsoft.com/en-us/dotnet/api/system.dynamic.dynamicobject.tryconv
         {
             Config = option.Value;
         }
+//
+            //Post the embeded json files to usercenter language text database;
+            var nms = typeof(ServiceTemplateCoreModule).Assembly.GetManifestResourceNames();
+            var translationSrc = typeof(ServiceTemplateCoreModule).Assembly.GetManifestResourceStream("EP.ServiceTemplate.Localize.SourceFiles.ServiceTemplate-zh-Hans.json");
+            var sr = new StreamReader(translationSrc);
+            using (sr)
+            {
+                var str = sr.ReadToEnd();
+                this.SafelyRun(() =>
+                {
+                    //Post the language texts to usercenter service.
+                    AsyncHelper.RunSync(() => UserCenterRestContext.Instance.PostAsync("language/Upload", str.ToJsonStringContent()));
+                });
+            }
