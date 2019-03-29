@@ -44,7 +44,7 @@ namespace Demos
 
         private TypeManager()
         {
-
+            var allTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(@as => @as.GetTypes());
         }
 
         private Dictionary<Type, Type> InventoryList = new Dictionary<Type, Type>();
