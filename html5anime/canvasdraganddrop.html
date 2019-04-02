@@ -40,7 +40,7 @@
 
             (x<173)? ax=75 : ax=425;
             (y<148)? ay=50 : ay=350;
-
+		//Below to make sure the image does not go out of boundary of canvas
             (x < 425 && x >75)? x =e.clientX : x =ax;
 
             (y > 50 && y <350) ? y=e.clientY : y=ay;
