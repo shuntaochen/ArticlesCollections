@@ -56,6 +56,13 @@
         };
     }
 
+	window.onerror=function(){
+        //global error handling in javascript,onerror catches and logs every error thrown here, the console.log method will record the arguments 3s later.
+	alert(arguments)
+	console.log(arguments)
+	}
+	
+	setTimeout(function(){throw new Error(55)},3000)
 </script>
 </body>
 </html>
