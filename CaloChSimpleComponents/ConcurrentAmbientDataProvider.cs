@@ -20,7 +20,7 @@ namespace EP.DynamicForms.Helpers
 {
 
 
-    public class MongoHelper : IDisposable, IMongoHelper, ITransientDependency
+    public class MongoHelper : IMongoHelper, ITransientDependency //IDisposable,
     {
         #region Fields
         //数据项key
@@ -30,7 +30,7 @@ namespace EP.DynamicForms.Helpers
 
         private static IConfigurationRoot ConfigurationRoot => AppConfigurations.GetConfiguration(Commons.Core.Web.WebContentDirectoryFinder.CalculateContentRootFolder());
 
-        private int? TenantId => GetCurrentItem(DataContextKey).Value ?? IocManager.Instance.Resolve<IAbpSession>()?.TenantId;
+        private int? TenantId => GetCurrentItem(DataContextKey)?.Value ?? IocManager.Instance.Resolve<IAbpSession>()?.TenantId;
 
         private static readonly string MONGO_ADDRESS = ConfigurationRoot["ConnectionStrings:Mongodb"];
 
@@ -351,10 +351,10 @@ namespace EP.DynamicForms.Helpers
 
         #endregion
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    GC.SuppressFinalize(this);
+        //}
 
 
         public IDisposable Use(int? tenantId)
@@ -377,7 +377,7 @@ namespace EP.DynamicForms.Helpers
                     _dataContext.SetData(DataContextKey, null);
                     return;
                 }
-                _dataContext.SetData(DataContextKey, item.Outer.Id);
+                _dataContext.SetData(DataContextKey, item.Outer?.Id);
             });
         }
 
@@ -407,6 +407,9 @@ namespace EP.DynamicForms.Helpers
             }
         }
     }
+
+
+
 
 
 
