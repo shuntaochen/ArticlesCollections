@@ -30,7 +30,7 @@ namespace EP.DynamicForms.Helpers
 
         private static IConfigurationRoot ConfigurationRoot => AppConfigurations.GetConfiguration(Commons.Core.Web.WebContentDirectoryFinder.CalculateContentRootFolder());
 
-        private int? TenantId => ConcurrentItems.GetValueOrDefault(_dataContext.GetData(DataContextKey) as string).Value ?? IocManager.Instance.Resolve<IAbpSession>()?.TenantId;
+        private int? TenantId => GetCurrentItem(DataContextKey).Value ?? IocManager.Instance.Resolve<IAbpSession>()?.TenantId;
 
         private static readonly string MONGO_ADDRESS = ConfigurationRoot["ConnectionStrings:Mongodb"];
 
@@ -407,10 +407,7 @@ namespace EP.DynamicForms.Helpers
             }
         }
     }
-
-
-
-//datacontext is a concurrent dictionary
-
-
 }
+
+//datacontext is a concurrent dictionary that stores data contextkey and the guid
+
