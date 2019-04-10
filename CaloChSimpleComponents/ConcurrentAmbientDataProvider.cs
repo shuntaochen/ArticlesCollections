@@ -359,10 +359,10 @@ namespace EP.DynamicForms.Helpers
 
         public IDisposable Use(int? tenantId)
         {
-            var scopeItem = new ScopeItem(tenantId, GetCurrentItem(DataContextKey));
+            var item = new ScopeItem(tenantId, GetCurrentItem(DataContextKey));
 
-            string key = scopeItem.Id;
-            if (!ConcurrentItems.TryAdd(key, scopeItem))
+            string key = item.Id;
+            if (!ConcurrentItems.TryAdd(key, item))
             {
                 throw new AbpException("Can not add item! ConcurrentItems.TryAdd returns false!");
             }
@@ -371,13 +371,13 @@ namespace EP.DynamicForms.Helpers
 
             return new DisposeAction(() =>
             {
-                ConcurrentItems.TryRemove(key, out scopeItem);
-                if (scopeItem == null)
+                ConcurrentItems.TryRemove(key, out item);
+                if (item == null)
                 {
                     _dataContext.SetData(DataContextKey, null);
                     return;
                 }
-                _dataContext.SetData(DataContextKey, scopeItem.Outer.Id);
+                _dataContext.SetData(DataContextKey, item.Outer.Id);
             });
         }
 
@@ -407,7 +407,10 @@ namespace EP.DynamicForms.Helpers
             }
         }
     }
+
+
+
 }
 
-//datacontext is a concurrent dictionary that stores data contextkey and the guid
 
+//data context is a concurrent dictionary
