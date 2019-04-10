@@ -359,9 +359,9 @@ namespace EP.DynamicForms.Helpers
 
         public IDisposable Use(int? tenantId)
         {
-            var scopeItem = new ScopeItem(tenantId);
+            var scopeItem = new ScopeItem(tenantId, GetCurrentItem(DataContextKey));
 
-            string key = scopeItem.Id.ToString();
+            string key = scopeItem.Id;
             if (!ConcurrentItems.TryAdd(key, scopeItem))
             {
                 throw new AbpException("Can not add item! ConcurrentItems.TryAdd returns false!");
@@ -410,13 +410,7 @@ namespace EP.DynamicForms.Helpers
 
 
 
-
+//datacontext is a concurrent dictionary
 
 
 }
-
-//data context is also a concurrent dictionary
-
-
-
-
