@@ -416,7 +416,7 @@ namespace EP.DynamicForms.Helpers
 }
 
 
-//data context is a concurrent dictionary
+//data context is a a wrapper of concurrent dictionary that uses AsyncLocal<string> as data type and string as key
 //# using System.Collections.Concurrent;
 using System.Threading;
 using Abp.Dependency;
