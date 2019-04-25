@@ -14,6 +14,15 @@ namespace EP.Query.DataSource
             conn.Open();
         }
 
+        public string CreateView(string query)
+        {
+            var tempView = Guid.NewGuid().ToString();
+            var view = $"create view {tempView} as {query}";
+            MySqlCommand cmd = new MySqlCommand(view, conn);
+            cmd.ExecuteNonQuery();
+            return tempView;
+        }
+
         public List<string> GetTableNames()
         {
             var list_tblName = new List<string>();
@@ -42,7 +51,7 @@ namespace EP.Query.DataSource
         }
 
 
-        public Dictionary<string, string> GetColumnDefinition(string tableName)
+        public Dictionary<string, string> GetColumnDefinitions(string tableName)
         {
             Dictionary<string, string> fieldDef = new Dictionary<string, string>();
             MySqlCommand cmd = null;
