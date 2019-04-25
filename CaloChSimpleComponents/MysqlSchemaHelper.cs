@@ -22,7 +22,6 @@ namespace EP.Query.DataSource
             MySqlDataReader reader = null;
             try
             {
-                conn.Open();
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -51,7 +50,6 @@ namespace EP.Query.DataSource
             List<string> list_ColName = new List<string>();
             List<Type> list_ColType = new List<Type>();
             string sql = "show columns from " + tableName + " ;";
-            conn.Open();
             cmd = new MySqlCommand(sql, conn);
             try
             {
