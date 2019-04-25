@@ -1,6 +1,8 @@
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EP.Query.DataSource
 {
@@ -21,6 +23,50 @@ namespace EP.Query.DataSource
             MySqlCommand cmd = new MySqlCommand(view, conn);
             cmd.ExecuteNonQuery();
             return tempView;
+        }
+
+        public List<JObject> QueryView(string view)
+        {
+            var ret = new List<JObject>();
+            var sql = $"select * from {view}";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = null;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                var colNames = GetColNames(reader.GetSchemaTable());
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        string val = reader.GetString(0);
+                        var line = new JObject();
+                        colNames.ForEach(colName =>
+                        {
+                            line[colName] = reader[colName].ToString();
+                        });
+                        ret.Add(line);
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                reader.Close();
+            }
+            return ret;
+        }
+
+        private List<string> GetColNames(DataTable schemaTable)
+        {
+            var ret = new List<string>();
+            foreach (DataRow row in schemaTable.Rows)
+            {
+                ret.Add(row["ColumnName"].ToString());
+            }
+            return ret;
         }
 
         public List<string> GetTableNames()
