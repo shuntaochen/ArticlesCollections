@@ -13,5 +13,5 @@ P is always true, C and A needs to be implemented.
 A general handling state, each one is a sub transaction, state change on each done, final consistency!! My understanding.
 Using MSMQ one solution: Partition-> db managed state; Then to MSMQ-> MSMQ managed; Subscribers get from queue-> db managed state!
 
-What Run is saying about the principle:
+What Ruan is saying about the principle:
 [CAPExplained](http://www.ruanyifeng.com/blog/2018/07/cap.html)
