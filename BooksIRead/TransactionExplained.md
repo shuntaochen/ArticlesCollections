@@ -3,7 +3,8 @@ Ensure is using the same transation
 2. Read transation:
 Accordingly, executing multiple sql command relying on high real-time data should use transation and commit
 3. Distributed transation:
-CAP principle: 
+> CAP principle: 
+
 ###Consistency: Must return the value after write opertion.
 ###Accessibility: Must reply to User request. 
 ###Partition tolerance: Distributed systems locate in different subnets, eg. one in US, one in China.
