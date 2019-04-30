@@ -5,9 +5,9 @@ Accordingly, executing multiple sql command relying on high real-time data shoul
 3. Distributed transation:
 > CAP principle: 
 
-###Consistency: Must return the value after write opertion.
-###Accessibility: Must reply to User request. 
-###Partition tolerance: Distributed systems locate in different subnets, eg. one in US, one in China.
+### Consistency: Must return the value after write opertion.
+### Accessibility: Must reply to User request. 
+### Partition tolerance: Distributed systems locate in different subnets, eg. one in US, one in China.
 P is always true, C and A needs to be implemented.
 
 A general handling state, each one is a sub transaction, state change on each done, final consistency!! My understanding.
