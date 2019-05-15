@@ -3,5 +3,5 @@
 //编译
 javac -d ./ assist.java two.java
 //运行
-java two
+java fullpath
 ```
