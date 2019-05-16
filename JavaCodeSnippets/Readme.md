@@ -3,7 +3,7 @@
 
 [java doc](http://tool.oschina.net/apidocs/apidoc?api=jdk-zh)
 
-java.mail.*
+javax.mail 
 
 java.applet    提供了创建applet需要的所有类
 
