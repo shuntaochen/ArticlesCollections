@@ -1,4 +1,5 @@
 " 把这个放在~ 下面就会改变vim的配置
+
 set nocompatible
 filetype on
  
@@ -70,7 +71,7 @@ func SetTitle()
 	if &filetype == 'sh' 
 		call setline(1, "##########################################################################") 
 		call append(line("."), "# File Name: ".expand("%")) 
-		call append(line(".")+1, "# Author: CaloCh") 
+		call append(line(".")+1, "# Author: ShuntaoChen") 
 		call append(line(".")+2, "# mail: ") 
 		call append(line(".")+3, "# Created Time: ".strftime("%c")) 
 		call append(line(".")+4, "#########################################################################") 
@@ -81,8 +82,8 @@ func SetTitle()
 	else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: Caloch") 
-		call append(line(".")+2, "	> Mail: caloch.cn ") 
+		call append(line(".")+1, "	> Author: ShuntaoChen") 
+		call append(line(".")+2, "	> Mail: ") 
 		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
 		call append(line(".")+4, " ************************************************************************/") 
 		call append(line(".")+5, "")
@@ -96,10 +97,13 @@ func SetTitle()
 		call append(line(".")+6, "#include<stdio.h>")
 		call append(line(".")+7, "")
 	endif
-	"	if &filetype == 'java'
-	"		call append(line(".")+6,"public class ".expand("%"))
-	"		call append(line(".")+7,"")
-	"	endif
+	if &filetype == 'java'
+		call append(line(".")+6,"public class ".expand("%")."{")
+		call append(line(".")+7," public static void main(String[] args){")
+		call append(line(".")+8,"  System.out.println(\"Hello world!\");")
+		call append(line(".")+9," }")
+		call append(line(".")+10,"}")
+		endif
 	"新建文件后，自动定位到文件末尾
 	autocmd BufNewFile * normal G
 endfunc 
@@ -251,3 +255,4 @@ endfunction
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
+
