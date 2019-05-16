@@ -1,6 +1,8 @@
 ### Create the JSharp J# code snippets and most often used libraries usages down here.
 [ADOCUMENT](http://www.runoob.com/java/java-basic-syntax.html)
 
+[java doc](http://tool.oschina.net/apidocs/apidoc?api=jdk-zh)
+
 java.mail.*
 
 java.applet    提供了创建applet需要的所有类
