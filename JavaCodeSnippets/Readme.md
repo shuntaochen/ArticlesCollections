@@ -28,6 +28,7 @@ java.sql     提供了访问和处理来自于Java标准数据源数据的类
 java.test    包括以一种独立于自然语言的方式处理文本、日期、数字和消息的类和接口
 
 java.util.*    包括集合类、时间处理模式、日期时间工具等各类常用工具包
+java.util.concurrent 并发包
 
 javax.accessibility    定义了用户界面组件之间相互访问的一种机制
 
