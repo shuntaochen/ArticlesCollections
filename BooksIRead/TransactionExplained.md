@@ -16,3 +16,5 @@ Using MSMQ one solution: Partition-> db managed state; Then to MSMQ-> MSMQ manag
 What Ruan is saying about the principle:
 [CAPExplained](http://www.ruanyifeng.com/blog/2018/07/cap.html)
 [Transaction ACID](https://baike.baidu.com/item/acid/10738?fr=aladdin)
+
+**[Mysql Transaction isolation levels](https://www.cnblogs.com/huanongying/p/7021555.html)**
