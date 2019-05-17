@@ -14,6 +14,7 @@ java.beans.*    提供了开发Java Beans需要的所有类
 java.io    提供了通过数据流、对象序列以及文件系统实现的系统输入、输出
 
 java.lang.*    Java编程语言的基本类库
+java.lang.threading 线程包
 
 java.math.*     提供了简明的整数算术以及十进制算术的基本函数
 
