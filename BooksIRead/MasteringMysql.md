@@ -1,3 +1,8 @@
+Installation on CentOs:
+```
+yum -y install mysql mysql-server mysql-devel
+```
+
 Scenarios:
 1. Single query
 2. unioned query
