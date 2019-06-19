@@ -10,4 +10,6 @@ now, and at the same time, using new programming language could contribute to my
 4. I am to try it tonight and at least download it and try some of the basic grammarly flow control and some keywords.
 5. The first package of GO is very important the **"fmt"** package, which is the format package in GO, which can print the strings in certain format
 
-6. 
+6. I think of creating an architecure diagram of the goLang app structure, and mark every part with the coressponding flow control phrases, like an architecture show, diagrams help remember better, and makes better memory.
+
+7. 
