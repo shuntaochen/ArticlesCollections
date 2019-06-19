@@ -12,4 +12,6 @@ now, and at the same time, using new programming language could contribute to my
 
 6. I think of creating an architecure diagram of the goLang app structure, and mark every part with the coressponding flow control phrases, like an architecture show, diagrams help remember better, and makes better memory.
 
+>> My handtyping articles do not look so ugly especially when I go read them in a distance from the screen, though my life has passed much, and though the morning sun never lasts a day, this skill should last forever, this language in my brain!
+
 7. 
