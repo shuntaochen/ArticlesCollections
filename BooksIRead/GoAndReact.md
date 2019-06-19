@@ -8,6 +8,6 @@ now, and at the same time, using new programming language could contribute to my
 3. I have found an GOLang online doc that is in Chinese, and explains it seemingly thoroughly. the address of the index is
 [GOLangDOc](http://c.biancheng.net/golang/concurrent/)
 4. I am to try it tonight and at least download it and try some of the basic grammarly flow control and some keywords.
-5. The first package of GO is very important the **fmt** package, which is the format package in GO, which can print the strings in certain format
+5. The first package of GO is very important the **"fmt"** package, which is the format package in GO, which can print the strings in certain format
 
 6. 
