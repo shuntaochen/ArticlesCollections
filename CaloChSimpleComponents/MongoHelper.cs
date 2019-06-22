@@ -2,8 +2,11 @@ using Abp;
 using Abp.Dependency;
 using Abp.Runtime;
 using Abp.Runtime.Session;
+using Abp.Threading;
 using EP.Commons.Core.Configuration;
-using EP.DynamicForms.DynamicForm;
+using EP.Commons.ServiceApi;
+using EP.Commons.ServiceApi.UserCenter;
+using EP.Commons.ServiceApi.UserCenter.Dto;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
@@ -33,7 +36,7 @@ namespace EP.DynamicForms.Helpers
         private static readonly string MONGO_ADDRESS = ConfigurationRoot["ConnectionStrings:Mongodb"];
 
         private static readonly string databaseName = ConfigurationRoot["CustomConfig:Db:MongodbDBName"];
-
+        private IUserCenterServiceApi userCenterServiceApi;
         protected IMongoClient _client;
         protected IMongoDatabase _database;
         #endregion
@@ -41,39 +44,68 @@ namespace EP.DynamicForms.Helpers
 
         #region Constructors
 
-        public MongoHelper()
+        public MongoHelper(IServiceApiFactory serviceApiFactory, IAbpSession abpSession)
         {
             string dbname = databaseName;
             _client = new MongoClient(MONGO_ADDRESS);
             _database = _client.GetDatabase(dbname);
-            EnsureCollectionsCreated();
             _dataContext = IocManager.Instance.Resolve<IAmbientDataContext>();
+            userCenterServiceApi = serviceApiFactory.GetServiceApi<IUserCenterServiceApi>().Object;
+            AbpSession = abpSession;
+            //EnsureCollectionsCreated();
         }
 
-        private void EnsureCollectionsCreated()
+        private List<TenantDto> Tenants()
         {
-            string[] collections = new string[] { "ids", DynamicFormsConsts.FormEditorTreeCollectionName, nameof(FormListItem) };
+            return AsyncHelper.RunSync(() => userCenterServiceApi.GetAllTenants());
+        }
+
+        public void CreateCollectionsForTenant(TenantDto t)
+        {
+            string index = EnsureIndexCollectionCreated();
+            string[] collections = new string[] { DynamicFormsConsts.FormEditorTreeCollectionName, DynamicFormsConsts.FormDataCollectionName };
             foreach (string name in collections)
             {
-                IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(name);
+                string tenantDbName = GetCollectionName(name);
+                IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(tenantDbName);
                 if (collection == null)
                 {
-                    _database.CreateCollection(name);
+                    _database.CreateCollection(tenantDbName);
                 }
-                if (name != "ids")
+                IMongoCollection<BsonDocument> ids = _database.GetCollection<BsonDocument>(index);
+                if (!ids.Find(Builder.FilterEq("name", name) & Builder.FilterEq("TenantId", t.Id)).Any())
                 {
-                    IMongoCollection<BsonDocument> ids = _database.GetCollection<BsonDocument>("ids");
-                    if (!ids.Find(Builder.FilterEq("name", name)).Any())
-                    {
-                        ids.InsertOne(new BsonDocument(new BsonElement("id", 0), new BsonElement("name", name)));
-                    }
+                    ids.InsertOne(new BsonDocument(new BsonElement("id", 0), new BsonElement("name", name), new BsonElement("TenantId", t.Id)));
                 }
             }
         }
 
+        private string EnsureIndexCollectionCreated()
+        {
+            string index = "ids";
+            IMongoCollection<BsonDocument> indexCollection = _database.GetCollection<BsonDocument>(index);
+            if (indexCollection == null)
+            {
+                _database.CreateCollection(index);
+            }
+            return index;
+        }
+
+        public void EnsureCollectionsCreated()
+        {
+            Tenants().ForEach(t =>
+            {
+                CreateCollectionsForTenant(t);
+            });
+        }
+        private string GetCollectionName(string collectionName)
+        {
+            return collectionName + AbpSession.TenantId ?? "";
+        }
+
         public int IncrementId(string collectionName)
         {
-            string command = @"{findAndModify:'ids',update:{$inc:{'id':1}},query:{'name':'" + collectionName + "'},new:true  }";
+            string command = @"{findAndModify:'ids',update:{$inc:{'id':1}},query:{'name':'" + collectionName + "','TenantId':" + AbpSession.TenantId ?? "" + "},new:true  }";
             BsonDocument identity = _database.RunCommand<BsonDocument>(command);
             return identity["value"]["id"].ToInt32();
         }
@@ -269,7 +301,7 @@ namespace EP.DynamicForms.Helpers
         /// <returns></returns>
         public void Insert(string collectionName, BsonDocument doc, bool isMultitenancy = true)
         {
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             if (isMultitenancy)
             {
                 AttachTenantIdToData(ref doc);
@@ -287,7 +319,7 @@ namespace EP.DynamicForms.Helpers
         public void Insert<T>(string collectionName, T doc, bool isMultitenancy = true)
         {
 
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             BsonDocument bson = doc.ToBsonDocument();
             if (isMultitenancy)
             {
@@ -318,7 +350,7 @@ namespace EP.DynamicForms.Helpers
 
                 docs[i] = doc;
             }
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             collection.InsertMany(docs);
         }
         #endregion
@@ -337,7 +369,7 @@ namespace EP.DynamicForms.Helpers
             {
                 ApplyMultiTenantFilter(ref filter);
             }
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             collection.UpdateOne(filter, update);
         }
 
@@ -356,7 +388,7 @@ namespace EP.DynamicForms.Helpers
             {
                 ApplyMultiTenantFilter(ref filter);
             }
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             collection.UpdateOne(filter, update);
         }
 
@@ -375,7 +407,7 @@ namespace EP.DynamicForms.Helpers
             {
                 ApplyMultiTenantFilter(ref filter);
             }
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.PushEach(arrayField, list);
             collection.FindOneAndUpdate<BsonDocument>(filter, update);
         }
@@ -394,7 +426,7 @@ namespace EP.DynamicForms.Helpers
             {
                 ApplyMultiTenantFilter(ref filter);
             }
-            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = _database.GetCollection<BsonDocument>(GetCollectionName(collectionName));
             collection.DeleteMany(filter);
         }
 
@@ -430,6 +462,7 @@ namespace EP.DynamicForms.Helpers
         {
             bsonElements["tenantId"] = TenantId;
         }
+        //get tenant dbname, transfer db name
 
         #endregion
 
@@ -458,6 +491,8 @@ namespace EP.DynamicForms.Helpers
         }
 
         private static ConcurrentDictionary<string, ScopeItem> ConcurrentItems { get; set; } = new ConcurrentDictionary<string, ScopeItem>();
+        public IAbpSession AbpSession { get; }
+
         private IAmbientDataContext _dataContext;
 
         private ScopeItem GetCurrentItem(string contextKey)
