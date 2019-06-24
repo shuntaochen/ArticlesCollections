@@ -18,4 +18,4 @@ now, and at the same time, using new programming language could contribute to my
 
 >> I always had wanted to write a book in English, and some day put this long paragraphs together into a note which can be thick enough to be called a book, which records the life time of my existance. I love expressing so much.
 
-7. I watched a video on youtube by a UK dev, learning go in 12 minutes and go concurrency patters, explaing basis, goroutine and chanels, so short, but explains what I practiced for the last two days, I guess I am to try some orms or write some functionality oriented code. Today I have been trying liteide, the official go ide, the playground is a free version linqpad, not bad. 
+7. I watched a video on youtube by a UK dev, learning go in 12 minutes and go concurrency patters, explaining basis, goroutine and chanels, so short, but explains what I practiced for the last two days, I guess I am to try some orms or write some functionality oriented code. Today I have been trying liteide, the official go ide, the playground is a free version linqpad, not bad. 
