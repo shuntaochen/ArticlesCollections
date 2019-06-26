@@ -2,7 +2,7 @@ Let's write a framework.
 1. create a model var model={a:1,b:'b'}
 2. let's create a router, router maps url to concrete object and returns response, router is a collection
 3. let's create a manager for managing all our clients, to per request there is a client, or shared
-4. let's organize our request params, and apply request pipeline filters
+4. let's organize our request params, and apply request pipeline filters, read identity from cookie
 5. let's interact with database
 6. let's create a configuration manager which handles configuration loaders from different sources
 7. let's create a language manager
@@ -19,4 +19,4 @@ Let's write a framework.
 
 15. Further more, let's create a socket as server binded to a port and accepts data by tcp/ip protocol.
 
-16. Whenever our server socket receives a socket connection as client, store the client to static memory by a manager class.
+16. Whenever our server socket receives a socket connection as client, store the client to static memory by a manager class. 
