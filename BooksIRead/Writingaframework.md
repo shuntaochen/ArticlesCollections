@@ -20,3 +20,4 @@ Let's write a framework.
 15. Further more, let's create a socket as server binded to a port and accepts data by tcp/ip protocol.
 
 16. Whenever our server socket receives a socket connection as client, store the client to static memory by a manager class. 
+17. Write response by the client socket in store.
