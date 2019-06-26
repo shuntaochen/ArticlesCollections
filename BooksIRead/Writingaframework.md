@@ -21,3 +21,10 @@ Let's write a framework.
 
 16. Whenever our server socket receives a socket connection as client, store the client to static memory by a manager class. 
 17. Write response by the client socket in store.
+18. Writing our ORM, we need to implement a pool which holds a certain number of connections to be performant
+19. Deassemble our models into k-vs, and create table oriented sql clauses by model type name
+20. For different operations, build different sql sentence
+21. Use sql driver and execute the sentence, so the data is finally hibernating in database;
+22. For relation type db, read index, foreign keys, keys, and instantiate different objects with data.
+23. Using a Serialization tool, create a serialization protocol, and reorganize the data into the form k-v by k-v
+24. Create
