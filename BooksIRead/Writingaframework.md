@@ -14,3 +14,5 @@ Let's write a framework.
 12. write the execution result to response
 13. apply result filters
 14. send to client.
+
+14. for model binding type, mvvm requires to audit property changes and recalculates the whole view model, mvc just binds the value to ui, mvp abstracts the view into an interface and handles all view relevant logic in presenter, old store pattern first gets all data, and keeps a state which is bad for interaction type apps.
