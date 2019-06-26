@@ -1,0 +1,16 @@
+Let's write a framework.
+1. create a model var model={a:1,b:'b'}
+2. let's create a router, router maps url to concrete object and returns response, router is a collection
+3. let's create a manager for managing all our clients, to per request there is a client, or shared
+4. let's organize our request params, and apply request pipeline filters
+5. let's interact with database
+6. let's create a configuration manager which handles configuration loaders from different sources
+7. let's create a language manager
+8. let's create a base facade for our service base class
+9. let's create a type manager and apply di
+9. let's find from our ioc container the type that matches our router
+10. let's instantiate an object by the type
+11. let's execute the method router requires
+12. write the execution result to response
+13. apply result filters
+14. send to client.
