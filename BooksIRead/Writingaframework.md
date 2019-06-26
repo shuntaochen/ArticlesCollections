@@ -16,3 +16,7 @@ Let's write a framework.
 14. send to client.
 
 14. for model binding type, mvvm requires to audit property changes and recalculates the whole view model, mvc just binds the value to ui, mvp abstracts the view into an interface and handles all view relevant logic in presenter, old store pattern first gets all data, and keeps a state which is bad for interaction type apps.
+
+15. Further more, let's create a socket as server binded to a port and accepts data by tcp/ip protocol.
+
+16. Whenever our server socket receives a socket connection as client, store the client to static memory by a manager class.
