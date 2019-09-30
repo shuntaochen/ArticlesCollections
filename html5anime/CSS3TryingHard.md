@@ -25,3 +25,10 @@ img {
     height: auto;
 }
 ```
+5. Button hover to show :after content >>
+```
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+```
