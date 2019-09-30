@@ -34,6 +34,7 @@ img {
 ```
 6. CSS3 media query to add labels:
 ```
+
 @media screen and (max-width: 1000px) and (min-width: 700px) {
     ul li a:before {
         content: "Email: ";
@@ -50,3 +51,7 @@ img {
 }
 
 ```
+
+7. Use <a> to wrap images:
+    
+    
