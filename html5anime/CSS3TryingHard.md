@@ -53,5 +53,17 @@ img {
 ```
 
 7. Use <a> to wrap images:
-    
+    ```
+    a {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+a:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+    ```
     
