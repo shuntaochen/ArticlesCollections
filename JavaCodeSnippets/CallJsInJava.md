@@ -16,3 +16,4 @@ Object object = invocableEngine.invokeFunction("functionToBeCalled", parameterFo
 
 
 
+[http://www.java2s.com/Tutorials/Java/Scripting_in_Java/0010__Scripting_in_Java_HelloWorld.htm](http://www.java2s.com/Tutorials/Java/Scripting_in_Java/0010__Scripting_in_Java_HelloWorld.htm)
