@@ -1,3 +1,4 @@
+```
 List<File> jars = Arrays.asList(new File("/tmp/jars").listFiles());
 URL[] urls = new URL[files.size()];
 for (int i = 0; i < jars.size(); i++) {
@@ -14,3 +15,5 @@ Class.forName("org.kostenko.examples.core.classloader.ClassLoaderTest", true , c
 Thread.currentThread().setContextClassLoader(childClassLoader);  
 
 ServiceLoader<MyProvider> serviceLoader = ServiceLoader.load(MyProvider.class, childClassLoader);
+
+```
